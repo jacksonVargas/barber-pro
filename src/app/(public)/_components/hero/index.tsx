@@ -30,13 +30,13 @@ export function Hero() {
       {/* Texto */}
       <div className='w-full max-w-5xl mx-auto relative z-1 text-center'>
         <h3 className='text-amber-500 text-lg'>O Verdadeiro Estilo Masculino Começa Aqui.</h3>
-        <h1 className='text-white text-2xl mb-10'>Transforme seu visual com a precisão e a tradição de nossos mestres barbeiros. Agende seu horário e experimente a diferença.</h1>
+        <h1 className='text-white text-xl md:text-2xl mb-10'>Transforme seu visual com a precisão e a tradição de nossos mestres barbeiros. Agende seu horário e experimente a diferença.</h1>
         <div className='flex justify-center items-center gap-3'>
-          <a href='#' className='transition-all duration-300 hover:-translate-y-1 py-2 px-5 rounded bg-amber-500 text-black md:text-sm font-semibold flex items-center gap-2'>
+          <a href='#' className='transition-all duration-300 hover:-translate-y-1 py-2 px-5 rounded bg-amber-500 text-black text-sm font-semibold flex items-center gap-2'>
             <Scissors />
             Agendar Corte
           </a>
-          <a href='#' className='transition-all duration-300 hover:-translate-y-1 py-2 px-5 rounded bg-amber-500 text-black md:text-sm font-semibold flex items-center gap-2'>
+          <a href='#' className='transition-all duration-300 hover:-translate-y-1 py-2 px-5 rounded bg-amber-500 text-black text-sm font-semibold flex items-center gap-2'>
             <ArrowRight />
             Ver Serviços
           </a>

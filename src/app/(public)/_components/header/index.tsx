@@ -49,7 +49,7 @@ export function Header() {
   return (
     <>
       <header className='w-full bg-background fixed z-99 top-0 border-b'>
-        <nav className='max-w-6xl mx-auto flex justify-between items-center py-2 px-5'>
+        <nav className='max-w-6xl mx-auto flex justify-between items-center py-3 md:py-2 px-5'>
           {/* Logo */}
           <a
             href='#'
