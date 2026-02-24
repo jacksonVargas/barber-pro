@@ -15,6 +15,10 @@
 	background: gold;
 }
 
+button {
+  cursor: pointer;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

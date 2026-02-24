@@ -2,14 +2,17 @@
 
 // Hooks
 import { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
 import { MenuProps } from '@/types/menu'
+import { authClient } from '@/lib/auth-client'
 
 // Icones
-import { Calendar, Scissors, Menu, X } from 'lucide-react'
+import { Scissors, Menu, X, Loader2 } from 'lucide-react'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const menuRef = useRef<HTMLDivElement>(null)
+  const { data: session, isPending } = authClient.useSession()
 
   // Função para fechar o menu
   useEffect(() => {
@@ -62,12 +65,21 @@ export function Header() {
           </a>
 
           <div className='md:hidden flex items-center gap-5'>
-            <a
-              href='#'
-              className='transition-all duration-300 hover:scale-103 text-xs font-semibold py-2 px-3 bg-amber-500 text-black rounded flex justify-center items-center gap-2'
-            >
-              Login
-            </a>
+            {session ? (
+              <Link
+                href='/profile'
+                className='transition-all duration-300 hover:scale-103 text-xs font-semibold py-2 px-3 bg-amber-500 text-black rounded flex justify-center items-center gap-2'
+              >
+                Perfil
+              </Link>
+            ) : (
+              <Link
+                href='/login'
+                className='transition-all duration-300 hover:scale-103 text-xs font-semibold py-2 px-3 bg-amber-500 text-black rounded flex justify-center items-center gap-2'
+              >
+                Login
+              </Link>
+            )}
 
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -90,12 +102,25 @@ export function Header() {
             ))}
 
             <div className='flex items-center gap-3'>
-              <a
-                href='#'
-                className='transition-all duration-300 hover:scale-103 md:text-sm font-semibold py-2 px-3 bg-amber-500 text-black rounded flex items-center gap-2'
-              >
-                Login
-              </a>
+              {isPending ? (
+                <div className='py-2 px-3 bg-amber-500 text-black rounded'>
+                  <Loader2 size={20} className='animate-spin' />
+                </div>
+              ) : session ? (
+                <Link
+                  href='/profile'
+                  className='transition-all duration-300 hover:scale-103 md:text-sm font-semibold py-2 px-3 bg-amber-500 text-black rounded flex justify-center items-center gap-2'
+                >
+                  Perfil
+                </Link>
+              ) : (
+                <Link
+                  href='/login'
+                  className='transition-all duration-300 hover:scale-103 md:text-sm font-semibold py-2 px-3 bg-amber-500 text-black rounded flex justify-center items-center gap-2'
+                >
+                  Login
+                </Link>
+              )}
 
               <a
                 href='#'
