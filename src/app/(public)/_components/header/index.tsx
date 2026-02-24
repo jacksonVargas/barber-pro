@@ -65,7 +65,11 @@ export function Header() {
           </a>
 
           <div className='md:hidden flex items-center gap-5'>
-            {session ? (
+            {isPending ? (
+              <div className='py-2 px-3 bg-amber-500 text-black rounded'>
+                <Loader2 size={20} className='animate-spin' />
+              </div>
+            ) : session ? (
               <Link
                 href='/profile'
                 className='transition-all duration-300 hover:scale-103 text-xs font-semibold py-2 px-3 bg-amber-500 text-black rounded flex justify-center items-center gap-2'
