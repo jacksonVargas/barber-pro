@@ -61,12 +61,21 @@ export function Header() {
             BARBEARIA
           </a>
 
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className='md:hidden cursor-pointer text-amber-500'
-          >
-            {isOpen ? <X size={25} /> : <Menu size={25} />}
-          </button>
+          <div className='md:hidden flex items-center gap-5'>
+            <a
+              href='#'
+              className='transition-all duration-300 hover:scale-103 text-xs font-semibold py-2 px-3 bg-amber-500 text-black rounded flex justify-center items-center gap-2'
+            >
+              Login
+            </a>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className='cursor-pointer text-amber-500'
+            >
+              {isOpen ? <X size={25} /> : <Menu size={25} />}
+            </button>
+          </div>
 
           {/* Desktop */}
           <ul className='hidden md:flex items-center gap-7'>
@@ -80,12 +89,21 @@ export function Header() {
               </a>
             ))}
 
-            <a
-              href='#'
-              className='transition-all duration-300 hover:scale-103 md:text-sm font-semibold py-2 px-3 bg-amber-500 text-black rounded flex items-center gap-2'
-            >
-              Agendar
-            </a>
+            <div className='flex items-center gap-3'>
+              <a
+                href='#'
+                className='transition-all duration-300 hover:scale-103 md:text-sm font-semibold py-2 px-3 bg-amber-500 text-black rounded flex items-center gap-2'
+              >
+                Login
+              </a>
+
+              <a
+                href='#'
+                className='transition-all duration-300 hover:scale-103 md:text-sm font-semibold py-2 px-3 bg-amber-500 text-black rounded flex items-center gap-2'
+              >
+                Agendar
+              </a>
+            </div>
           </ul>
         </nav>
       </header>
@@ -108,13 +126,21 @@ export function Header() {
               </a>
             ))}
 
-            <a
-              href='#'
-              className='transition-all duration-300 hover:scale-103 md:text-sm font-semibold py-3 px-3 bg-amber-500 text-black rounded flex justify-center items-center gap-2'
-              onClick={() => setIsOpen(false)}
-            >
-              Agendar
-            </a>
+            <div className='grid gap-2'>
+              <a
+                href='#'
+                className='transition-all duration-300 hover:scale-103 md:text-sm font-semibold py-2 px-3 bg-amber-500 text-black rounded flex justify-center items-center gap-2'
+              >
+                Login
+              </a>
+
+              <a
+                href='#'
+                className='transition-all duration-300 hover:scale-103 md:text-sm font-semibold py-2 px-3 bg-amber-500 text-black rounded flex justify-center items-center gap-2'
+              >
+                Agendar
+              </a>
+            </div>
           </ul>
         </div>
       )}

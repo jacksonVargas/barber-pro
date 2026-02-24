@@ -63,8 +63,7 @@ export function CardServices() {
               src={card.image}
               alt={card.title}
               fill
-              quality={100}
-              priority
+              sizes='(max-width: 768px), 100vw, 33vw'
               className='object-cover rounded-t-xl'
             />
           </div>
@@ -79,7 +78,10 @@ export function CardServices() {
               })}
             </p>
 
-            <a href='#' className='mt-auto py-2 bg-black text-amber-500 border border-amber-500 hover:bg-amber-500 hover:text-black rounded md:text-sm flex justify-center items-center gap-3'>
+            <a
+              href='#'
+              className='mt-auto py-2 bg-black text-amber-500 border border-amber-500 hover:bg-amber-500 hover:text-black rounded md:text-sm flex justify-center items-center gap-3'
+            >
               <Calendar size={18} />
               Agendar
             </a>
