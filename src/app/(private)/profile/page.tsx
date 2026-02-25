@@ -44,8 +44,8 @@ export default async function Profile() {
 
       <Card className='mb-7'>
         <CardContent>
-          <div className='flex justify-between items-center'>
-            <div className='flex items-center gap-4'>
+          <div className='flex flex-col md:flex-row md:justify-between md:items-center'>
+            <div className='flex items-center gap-4 mb-5 md:mb-0'>
               <div className='flex justify-center items-center w-15 h-15 rounded-full bg-transparent border-2 border-amber-500'>
                 <p className='text-amber-500 text-3xl'>
                   {session.user.name?.trim()[0]?.toUpperCase() ??
