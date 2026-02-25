@@ -80,7 +80,7 @@ export function CardServices() {
 
             <a
               href='#'
-              className='mt-auto py-2 bg-black text-amber-500 border border-amber-500 hover:bg-amber-500 hover:text-black rounded md:text-sm flex justify-center items-center gap-3'
+              className='mt-auto py-2 bg-black font-medium text-amber-500 border border-amber-500 hover:bg-amber-500 hover:text-black rounded md:text-sm flex justify-center items-center gap-3'
             >
               <Calendar size={18} />
               Agendar

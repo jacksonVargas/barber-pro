@@ -13,16 +13,98 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Role {
+  USER
+  BARBER
+  ADMIN
+}
+
+enum AppointmentStatus {
+  AGENDADO
+  FINALIZADO
+  CANCELADO
+}
+
+model Time {
+  id        String   @id @default(uuid())
+  dayOfWeek Int
+  startTime DateTime
+  endTime   DateTime
+
+  barberId String
+  barber   Barber @relation(fields: [barberId], references: [id])
+
+  @@map("times")
+}
+
+model Appointment {
+  id     String            @id @default(uuid())
+  date   DateTime
+  status AppointmentStatus @default(AGENDADO)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  barberId String
+  barber   Barber @relation(fields: [barberId], references: [id], onDelete: Cascade)
+
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([barberId, date])
+  @@index([date])
+  @@map("appointments")
+}
+
+model Service {
+  id       String @id @default(uuid())
+  name     String
+  price    Int
+  duration Int
+
+  barberId String
+  barber   Barber @relation(fields: [barberId], references: [id], onDelete: Cascade)
+
+  appointments Appointment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("services")
+}
+
+model Barber {
+  id    String  @id @default(uuid())
+  name  String
+  image String?
+
+  services     Service[]
+  appointments Appointment[]
+  times        Time[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("barbers")
+}
+
 model User {
-  id            String    @id
+  id            String  @id
   name          String
   email         String
-  emailVerified Boolean   @default(false)
+  emailVerified Boolean @default(false)
   image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  sessions      Session[]
-  accounts      Account[]
+  role          Role    @default(USER)
+
+  appointments Appointment[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  sessions  Session[]
+  accounts  Account[]
 
   @@unique([email])
   @@map("user")
