@@ -5,7 +5,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useLoginSchema, LoginSchema } from './login-schema'
 import { authClient } from '@/lib/auth-client'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
 // Componentes
@@ -34,6 +34,7 @@ export function LoginForm() {
   const form = useLoginSchema()
   const [loading, setLoading] = useState<boolean>(false)
   const [showPassword, setShowPassword] = useState<boolean>(false)
+  const router = useRouter()
 
   async function handleLogin(data: LoginSchema) {
     await authClient.signIn.email({
@@ -45,7 +46,8 @@ export function LoginForm() {
       },
       onSuccess(ctx) {
         setLoading(false)
-        redirect('/')
+        router.replace('/')
+        router.refresh()
       },
       onError(ctx) {
         const code = ctx.error.code

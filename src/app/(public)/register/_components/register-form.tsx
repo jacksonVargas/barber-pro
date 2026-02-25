@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useRegisterSchema, RegisterSchema } from './register-schema'
 import { authClient } from '@/lib/auth-client'
 import { toast } from 'sonner'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 // Componentes
 import {
@@ -34,6 +34,7 @@ export function RegisterForm() {
   const form = useRegisterSchema()
   const [loading, setLoading] = useState<boolean>(false)
   const [showPassword, setShowPassword] = useState<boolean>(false)
+  const router = useRouter()
 
   async function handleRegister(data: RegisterSchema) {
     await authClient.signUp.email(
@@ -48,7 +49,8 @@ export function RegisterForm() {
         },
         onSuccess(ctx) {
           setLoading(false)
-          redirect('/')
+          router.replace('/')
+          router.refresh()
         },
         onError(ctx) {
           const code = ctx.error.code
